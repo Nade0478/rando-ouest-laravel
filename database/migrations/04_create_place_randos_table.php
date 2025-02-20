@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('place_rando', function (Blueprint $table) {
+        Schema::create('place_randos', function (Blueprint $table) {
             $table->id();
             $table->string('name_place_rando');
             $table->decimal('longitude_place_rando');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('place_rando');
+        Schema::dropIfExists('place_randos');
     }
 };

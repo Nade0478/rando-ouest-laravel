@@ -14,9 +14,22 @@ Route::middleware('auth:sanctum')->get('/users', function (Request $request) {
     return $request->users();
 });
 
-// route api user
+// route api admin
 Route::apiResource('admin', UserController::class)->middleware('role:admin');
+Route::get('user', [UserController::class, 'index'])->middleware('role:admin');
+Route::get('user/{user}', [UserController::class, 'show'])->middleware('role:admin');
+Route::post('user', [UserController::class, 'store'])->middleware('role:admin');
+Route::put('user/{user}', [UserController::class, 'update'])->middleware('role:admin');
+Route::delete('user/{user}', [UserController::class, 'destroy'])->middleware('role:admin');
+
+// route api user
 Route::apiResource('user', UserController::class)->middleware('role:user');
+Route::get('user', [UserController::class, 'index'])->middleware('role:user');
+Route::get('user/{user}', [UserController::class, 'show'])->middleware('role:user');
+Route::post('user', [UserController::class, 'store'])->middleware('role:user');
+Route::put('user/{user}', [UserController::class, 'update'])->middleware('role:user');
+Route::delete('user/{user}', [UserController::class, 'destroy'])->middleware('role:user');
+
 
 // route api article
 

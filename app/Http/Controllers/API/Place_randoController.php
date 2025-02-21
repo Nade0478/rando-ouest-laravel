@@ -41,6 +41,7 @@ class Place_randoController extends Controller
             'status' => 'Success',
             'data' => $place_rando,
             ]);
+        }
 
     /**
      * Display the specified resource.

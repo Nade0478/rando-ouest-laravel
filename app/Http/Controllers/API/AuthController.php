@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -39,11 +40,11 @@ class AuthController extends Controller
                 'message' => 'User created successfully!',
             ],
             'data' => [
-                'user' => $user,
+                'user' => $user, // Correction : remplacement de auth()->user() par $user
                 'access_token' => [
                     'token' => $token,
                     'type' => 'Bearer',
-                    'expires_in' => auth()->factory()->getTTL() * 3600, // Renseigne le temps d'expiration du token en secondes
+                    'expires_in' => config('jwt.ttl') * 60, // Temps d'expiration en minutes
                 ],
             ],
         ]);
@@ -67,11 +68,11 @@ class AuthController extends Controller
                     'message' => 'User logged in successfully.',
                 ],
                 'data' => [
-                    'user' => auth()->user(),
+                    'user' => Auth::user(),
                     'access_token' => [
                         'token' => $token,
                         'type' => 'Bearer',
-                        'expires_in' => auth()->factory()->getTTL() * 3600,
+                        'expires_in' => config('jwt.ttl') * 60,
                     ],
                 ],
             ]);

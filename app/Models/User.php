@@ -19,9 +19,9 @@ class User extends Authenticatable implements JWTSubject
      * @var list<string>
      */
     protected $fillable = [
-        'name_user_rando',
-        'email_user_rando',
-        'password_user_rando',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -30,7 +30,7 @@ class User extends Authenticatable implements JWTSubject
      * @var list<string>
      */
     protected $hidden = [
-        'password_user_rando',
+        'password',
         'remember_token',
     ];
 
@@ -42,8 +42,8 @@ class User extends Authenticatable implements JWTSubject
     protected function casts(): array
     {
         return [
-            'email_user_rando_verified_at' => 'datetime',
-            //'password_user_rando' => 'hashed',
+            'email_verified_at' => 'datetime',
+            //'password' => 'hashed',
         ];
     }
     public function getJWTIdentifier()

@@ -27,7 +27,7 @@ class ArticleController extends Controller
             'title_article' => ['required','string','max:255'],
             'date_article' => ['required','date'],
             'content_article' => ['required','string'],
-            'image_article' => ['required','image'],
+            'image_article' => ['required|image|mimes:jpeg,png,jpg,gif,svg'],
             'category_id' => ['required','integer'],
             'users_id' => ['required','integer'],
         ]);
@@ -54,9 +54,9 @@ class ArticleController extends Controller
             'title_article' => ['required','string','max:255'],
             'date_article' => ['required','date'],
             'content_article' => ['required','string'],
-            'image_article' => ['image'],
-            'category_id' => ['integer'],
-            'users_id' => ['integer'],
+            'image_article' => ['required|image|mimes:jpeg,png,jpg,gif,svg'],
+            'category_id' => ['required','integer'],
+            'users_id' => ['required','integer'],
         ]);
 
         $article->update($validatedData);

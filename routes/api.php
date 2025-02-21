@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\API\RoleController;
-use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\OpinionController;
 use App\Http\Controllers\API\CategoryController;
@@ -15,22 +15,8 @@ Route::middleware('auth:sanctum')->get('/users', function (Request $request) {
     return $request->users();
 });
 
-// route api admin
-Route::apiResource('admin', UserController::class)->middleware('role:admin');
-Route::get('user', [UserController::class, 'index'])->middleware('role:admin');
-Route::get('user/{user}', [UserController::class, 'show'])->middleware('role:admin');
-Route::post('user', [UserController::class, 'store'])->middleware('role:admin');
-Route::put('user/{user}', [UserController::class, 'update'])->middleware('role:admin');
-Route::delete('user/{user}', [UserController::class, 'destroy'])->middleware('role:admin');
-
 // route api user
 Route::apiResource('user', UserController::class)->middleware('role:user');
-Route::get('user', [UserController::class, 'index'])->middleware('role:user');
-Route::get('user/{user}', [UserController::class, 'show'])->middleware('role:user');
-Route::post('user', [UserController::class, 'store'])->middleware('role:user');
-Route::put('user/{user}', [UserController::class, 'update'])->middleware('role:user');
-Route::delete('user/{user}', [UserController::class, 'destroy'])->middleware('role:user');
-
 
 // route api article
 
@@ -57,7 +43,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 //Seulement accessible via le JWT
 Route::middleware('auth:api')->group(function() {
-Route::get('/currentuser', [UserController::class, 'currentUser']);
+Route::get('/currentuser', [AuthController::class, 'currentUser']);
 Route::post('/logout', [AuthController::class, 'logout']);
 });
 

@@ -1,26 +1,22 @@
 <?php
 
-namespace Database\Seeders;
+namespace App\Models;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class UserSeeder extends Seeder
+class User extends Model
 {
+    use HasFactory;
+
     /**
-     * Run the database seeds.
+     * The roles that belong to the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function run(): void
+    public function roles(): BelongsToMany
     {
-        DB::table('users')->insert([
-            'name' => 'Doe',
-            'email' => 'doe@example.com',
-            'email_verified_at' => now(),
-            'password_' => Hash::make('password'), // password is 'password'
-            'remember_token' => Str::random(10),
-        ]);
+        return $this->belongsToMany(Role::class);
     }
 }

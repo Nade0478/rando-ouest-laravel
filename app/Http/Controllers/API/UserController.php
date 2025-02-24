@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
-use App\Traits\Enums\RoleEnum;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\Rules\Enum;
 
 class UserController extends Controller
 {
@@ -22,7 +21,7 @@ class UserController extends Controller
     {
         $formFields = $request->validate([
             'name' => 'required|string',
-            'role' => ['required', new Enum(RoleEnum::class)],
+            'role_id' => ['required','integer'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')],
             'password' => ['required', 'confirmed', Password::defaults()]
         ]);
@@ -43,8 +42,9 @@ class UserController extends Controller
     {
         $formFields = $request->validate([
             'name' => 'string',
-            'role' => [new Enum(RoleEnum::class)],
+            'role_id' => ['required','integer'],
             'email' => ['string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'password' => ['confirmed', Password::defaults()]
         ]);
 
         $user->fill($formFields);

@@ -10,6 +10,7 @@
         "laravel/framework": "^11.31",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "larswiegers/laravel-maps": "^0.19.0",
         "php-open-source-saver/jwt-auth": "^2.3"
     },
     "require-dev": {

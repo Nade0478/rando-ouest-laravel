@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -40,11 +39,11 @@ class AuthController extends Controller
                 'message' => 'User created successfully!',
             ],
             'data' => [
-                'user' => $user, // Correction : remplacement de auth()->user() par $user
+                'user' => $user,
                 'access_token' => [
                     'token' => $token,
                     'type' => 'Bearer',
-                    'expires_in' => config('jwt.ttl') * 60, // Temps d'expiration en minutes
+                    'expires_in' => JWTAuth::factory()->getTTL() * 60,
                 ],
             ],
         ]);
@@ -53,26 +52,27 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email',
+            'email' => 'required|string',
             'password' => 'required|string',
         ]);
 
         $credentials = $request->only('email', 'password');
         $token = JWTAuth::attempt($credentials);
 
-        if ($token) {
+        if ($token)
+        {
             return response()->json([
                 'meta' => [
                     'code' => 200,
                     'status' => 'success',
-                    'message' => 'User logged in successfully.',
+                    'message' => 'Login successful.',
                 ],
                 'data' => [
-                    'user' => Auth::user(),
+                    'user' => JWTAuth::user(),
                     'access_token' => [
                         'token' => $token,
                         'type' => 'Bearer',
-                        'expires_in' => config('jwt.ttl') * 60,
+                        'expires_in' => JWTAuth::factory()->getTTL() * 60,
                     ],
                 ],
             ]);
@@ -93,7 +93,7 @@ class AuthController extends Controller
         $token = JWTAuth::getToken();
         $invalidate = JWTAuth::invalidate($token);
 
-        if ($invalidate) {
+        if($invalidate) {
             return response()->json([
                 'meta' => [
                     'code' => 200,
@@ -102,15 +102,7 @@ class AuthController extends Controller
                 ],
                 'data' => [],
             ]);
-        } else {
-            return response()->json([
-                'meta' => [
-                    'code' => 500,
-                    'status' => 'error',
-                    'message' => 'Failed to log out.',
-                ],
-                'data' => [],
-            ], 500);
         }
     }
 }
+

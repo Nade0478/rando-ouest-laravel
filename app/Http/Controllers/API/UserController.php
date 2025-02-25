@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         $formFields = $request->validate([
             'name' => 'required|string',
-            'role_id' => 'required|integer|exists:roles,id',
+            'role_id' => 'required|integer', Role::unique('role_id'),
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')],
             'password' => ['required', 'confirmed', Password::defaults()]
         ]);
@@ -43,7 +43,7 @@ class UserController extends Controller
     {
         $formFields = $request->validate([
             'name' => 'sometimes|string',
-            'role_id' => 'required|integer|exists:roles,id',
+            'role_id' => 'required|integer', Role::unique('role_id'),
             'email' => ['sometimes', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => ['sometimes', 'confirmed', Password::defaults()]
         ]);

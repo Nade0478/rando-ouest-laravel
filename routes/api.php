@@ -11,15 +11,15 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\Place_randoController;
 use App\Http\Controllers\API\Manage_placeController;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 // route api user
-Route::apiResource('user', UserController::class)->middleware('role:user');
+Route::apiResource('user', UserController::class);
 
 // route api admin
-Route::apiResource('admin', UserController::class)->middleware('role:admin');
+Route::apiResource('admin', UserController::class);
 
 // route api article
 Route::apiResource('article', ArticleController::class);

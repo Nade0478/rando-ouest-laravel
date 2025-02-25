@@ -14,9 +14,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('manage_places', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('place_rando_id')->constrained()->cascadeOnDelete();
             $table->primary(['user_id', 'place_rando_id']);
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Place_rando::class);
         });
     }
 

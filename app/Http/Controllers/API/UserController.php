@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rules\Password;
+use Symfony\Component\HttpFoundation\Request;
+
+
 
 class UserController extends Controller
 {
@@ -15,7 +17,8 @@ class UserController extends Controller
 
     public function index()
     {
-        return response()->json(User::all());
+        $user = User::all();
+        return response()->json($user);
     }
 
     public function store(Request $request)

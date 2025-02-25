@@ -9,8 +9,6 @@ Route::get('/', function () {
     return view('Bienvenue');
 });
 
-Route::middleware('auth:api')->group(function () {
-    Route::apiResource('users', UserController::class);
-});
+
 
 

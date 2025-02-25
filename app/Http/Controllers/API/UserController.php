@@ -7,8 +7,12 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rules\Password;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 
+=======
+use Symfony\Component\HttpFoundation\Request;
+>>>>>>> 46167a7b9d8ed71c9f6f550d1081bd884ca3aa06
 
 
 

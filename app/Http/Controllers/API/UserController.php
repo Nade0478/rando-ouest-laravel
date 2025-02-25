@@ -7,19 +7,10 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rules\Password;
-<<<<<<< HEAD
 use Illuminate\Http\Request;
-
-=======
-use Symfony\Component\HttpFoundation\Request;
->>>>>>> 46167a7b9d8ed71c9f6f550d1081bd884ca3aa06
-
-
 
 class UserController extends Controller
 {
-
-
     public function index()
     {
         $user = User::all();
@@ -30,7 +21,7 @@ class UserController extends Controller
     {
         $formFields = $request->validate([
             'name' => 'required|string',
-            'role_id' => 'required|integer', Role::unique('role_id'),
+            'role_id' => 'required|integer|exists:roles,id',
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')],
             'password' => ['required', 'confirmed', Password::defaults()]
         ]);
@@ -51,10 +42,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $formFields = $request->validate([
-            'name' => 'string',
-            'role_id' => 'required|integer', Role::unique('role_id'),
-            'email' => ['string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
-            'password' => ['confirmed', Password::defaults()]
+            'name' => 'sometimes|string',
+            'role_id' => 'required|integer|exists:roles,id',
+            'email' => ['sometimes', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'password' => ['sometimes', 'confirmed', Password::defaults()]
         ]);
 
         $user->fill($formFields);

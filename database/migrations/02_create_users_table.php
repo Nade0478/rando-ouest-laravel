@@ -23,11 +23,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-<<<<<<< HEAD:database/migrations/01_create_users_table.php
             $table->foreignId('role_id')->constrained();
-=======
-            $table->foreignId('role_id')->constrained();          
->>>>>>> 46167a7b9d8ed71c9f6f550d1081bd884ca3aa06:database/migrations/02_create_users_table.php
             $table->rememberToken();
             $table->timestamps();
         });

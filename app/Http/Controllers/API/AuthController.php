@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-// use Illuminate\Support\Facades\Auth;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -31,7 +30,7 @@ class AuthController extends Controller
             'password' => bcrypt($request['password']),
         ]);
 
-        $token = auth()->login($user);
+        $token = JWTAuth::fromUser($user);
 
         return response()->json([
             'meta' => [
@@ -60,8 +59,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         $token = JWTAuth::attempt($credentials);
 
-        if ($token)
-        {
+        if ($token) {
             return response()->json([
                 'meta' => [
                     'code' => 200,
@@ -92,17 +90,15 @@ class AuthController extends Controller
     public function logout()
     {
         $token = JWTAuth::getToken();
-        $invalidate = JWTAuth::invalidate($token);
+        JWTAuth::invalidate($token);
 
-        if($invalidate) {
-            return response()->json([
-                'meta' => [
-                    'code' => 200,
-                    'status' => 'success',
-                    'message' => 'Successfully logged out',
-                ],
-                'data' => [],
-            ]);
-        }
+        return response()->json([
+            'meta' => [
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Successfully logged out',
+            ],
+            'data' => [],
+        ]);
     }
 }

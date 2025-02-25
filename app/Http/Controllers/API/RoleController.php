@@ -13,8 +13,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return response()->json($roles, 200);
+        $role = Role::all();
+        return response()->json($role, 200);
     }
 
     /**
@@ -23,7 +23,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name_role' => ['required', 'string','max:255'],
+            'role' => ['required', 'string','max:255'],
         ]);
 
         $role = Role::create($validatedData);
@@ -44,7 +44,7 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $validatedData = $request->validate([
-            'name_role' => ['required', 'string','max:255'],
+            'role' => ['required', 'string','max:255'],
         ]);
 
         $role->update($validatedData);

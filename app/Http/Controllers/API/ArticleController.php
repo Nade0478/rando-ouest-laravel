@@ -30,6 +30,7 @@ class ArticleController extends Controller
             'image_article' => ['required|image|mimes:jpeg,png,jpg,gif,svg'],
             'category_id' => ['required','integer'],
             'users_id' => ['required','integer'],
+            'opinion_id' => ['required','integer'],
         ]);
 
         $article = Article::create($validatedData);
@@ -57,6 +58,7 @@ class ArticleController extends Controller
             'image_article' => ['required|image|mimes:jpeg,png,jpg,gif,svg'],
             'category_id' => ['required','integer'],
             'users_id' => ['required','integer'],
+            'opinion_id' => ['required','integer'],
         ]);
 
         $article->update($validatedData);

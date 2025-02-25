@@ -17,7 +17,7 @@ class RoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_role' => $this->faker->unique()->word,
+            'role' => $this->faker->unique()->word,
             'created_at' => now(),
             'updated_at' => now(),
         ];

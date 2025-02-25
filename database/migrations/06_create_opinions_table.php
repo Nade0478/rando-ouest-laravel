@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('content_opinion');
             $table->integer('note_opinion');
             $table->unsignedBigInteger('users_id');
-            $table->unsignedBigInteger('place_rando_id');
+            $table->unsignedBigInteger('place_randos_id');
             $table->timestamps();
         });
     }

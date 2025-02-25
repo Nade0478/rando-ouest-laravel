@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Manage_place extends Model
 {
     use HasFactory;
-    protected $fillable = ['users_id','place_rando_id','updated_at', 'created_at'];
+    protected $fillable = ['users_id','place_randos_id','updated_at', 'created_at'];
 }

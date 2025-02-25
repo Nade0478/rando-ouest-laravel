@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class User extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','email','password','role_id'];
+    protected $fillable = ['name','email','password','roles_id'];
 
     public function roles()
     {

@@ -19,8 +19,8 @@ class OpinionFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'place_rando_id' => Place_rando::factory(),
+            'users_id' => User::factory(),
+            'place_randos_id' => Place_rando::factory(),
             'title_opinion' => $this->faker->sentence(3),
             'content_opinion' => $this->faker->paragraph(3),
             'note_opinion' => $this->faker->numberBetween(1, 5),

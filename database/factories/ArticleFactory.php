@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Opinion;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,8 +24,9 @@ class ArticleFactory extends Factory
             'date_article' => $this->faker->date('Y-m-d'),
             'content_article' => $this->faker->paragraph,
             'image_article' => $this->faker->image('public/storage/articles', 640, 480, null, false),
-            'users_id' => \App\Models\User::factory(),
-            'category_id' => \App\Models\Category::factory(),
+            'opinions_id' => Opinion::factory(),
+            'users_id' => User::factory(),
+            'category_id' => Category::factory(),
         ];
     }
 }

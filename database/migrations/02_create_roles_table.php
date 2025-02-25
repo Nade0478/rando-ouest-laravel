@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Roles extends Migration
+return new class extends Migration
 {
 /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class Roles extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name_role')->unique();
+            $table->string('role')->unique();
             $table->timestamps();
         });
     }

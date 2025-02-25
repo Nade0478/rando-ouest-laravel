@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image_article');
             $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('opinion_id');
             $table->timestamps();
         });
     }

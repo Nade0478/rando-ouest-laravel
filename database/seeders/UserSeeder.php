@@ -12,11 +12,11 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        // Créer les rôles
+        // Create the roles
         $adminRole = Role::create(['name' => 'admin']);
         $userRole = Role::create(['name' => 'user']);
 
-        // Créer l'utilisateur administrateur et lui attribuer le rôle admin
+        // Create the admin user and assign them the admin role
         $admin = User::create([
             'name' => 'Administrateur',
             'email' => 'admin@truc.fr',
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         ]);
         $admin->roles()->attach($adminRole);
 
-        // Créer l'utilisateur standard et lui attribuer le rôle user
+        // Create the standard user and assign them the user role
         $user = User::create([
             'name' => 'User',
             'email' => 'user@truc.fr',

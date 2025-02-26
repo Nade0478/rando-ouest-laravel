@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Place_rando;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class Manage_placeFactory extends Factory
     public function definition(): array
     {
         return [
-            //            'image_place' => $this->faker->image('public/storage/images', 640, 480, null, false),
+            'users_id' => User::factory(),
+            'place_randos_id' => Place_rando::factory(),
         ];
     }
 }

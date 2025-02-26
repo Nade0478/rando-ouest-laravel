@@ -17,9 +17,9 @@ return new class extends Migration
             $table->dateTime('date_article');
             $table->text('content_article');
             $table->string('image_article');
-            $table->unsignedBigInteger('users_id');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('opinion_id');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreignId('opinion_id')->references('id')->on('opinions')->onDelete('cascade');
             $table->timestamps();
         });
     }

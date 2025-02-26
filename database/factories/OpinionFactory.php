@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Place_rando;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

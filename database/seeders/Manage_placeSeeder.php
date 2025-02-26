@@ -13,6 +13,6 @@ class Manage_placeSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(Manage_place::class);
+        Manage_place::factory()->count(10)->create();
     }
 }

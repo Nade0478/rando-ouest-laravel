@@ -19,8 +19,8 @@ class Manage_placeFactory extends Factory
     public function definition(): array
     {
         return [
-            'users_id' => User::factory(),
-            'place_randos_id' => Place_rando::factory(),
+            'user_id' => rand(1, User::count()),
+            'place_rando_id' => rand(1, Place_rando::count()),
         ];
     }
 }

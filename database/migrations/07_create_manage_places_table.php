@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('place_rando_id')->constrained()->cascadeOnDelete();
             $table->primary(['user_id', 'place_rando_id']);
+            $table->timestamps();
         });
     }
 
